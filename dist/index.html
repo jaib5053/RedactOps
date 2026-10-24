@@ -4,13 +4,122 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/shield.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; script-src 'self' 'unsafe-inline';" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; script-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; frame-ancestors 'none';" />
+    
+    <!-- Primary SEO Metadata -->
     <title>RedactOps | Zero-Knowledge In-Browser PII Masking & AI Sanitizer</title>
-    <meta name="description" content="100% In-Browser Zero-Knowledge Sensitive Data Redaction, Tokenization & Reversible Masking for ChatGPT, Claude, and Enterprise AI workflows." />
+    <meta name="title" content="RedactOps | Zero-Knowledge In-Browser PII Masking & AI Sanitizer" />
+    <meta name="description" content="100% in-browser zero-knowledge sensitive data redaction, tokenization & reversible masking for ChatGPT, Claude, and Enterprise AI workflows. HIPAA Safe Harbor & GDPR Art. 32 compliant." />
+    <meta name="keywords" content="HIPAA compliant ChatGPT, redact PII from prompts, zero knowledge data anonymizer, Claude PHI scrubber, PCI DSS prompt sanitizer, reversible tokenization vault, client side regex redactor, free AI security chrome extension, safe prompt engineering" />
+    <meta name="author" content="ThinkLabs" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://redact-ops.vercel.app/" />
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="RedactOps" />
+    <meta property="og:url" content="https://redact-ops.vercel.app/" />
+    <meta property="og:title" content="RedactOps | Zero-Knowledge AI Prompt Shield & PII Sanitizer" />
+    <meta property="og:description" content="Use ChatGPT and Claude on sensitive records without violating HIPAA, GDPR, or PCI-DSS. 100% in-browser WebAssembly execution with 0 bytes server egress." />
+    <meta property="og:image" content="https://redact-ops.vercel.app/shield.svg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://redact-ops.vercel.app/" />
+    <meta name="twitter:title" content="RedactOps | Zero-Knowledge AI Prompt Shield" />
+    <meta name="twitter:description" content="Strip SSNs, patient charts, credit cards, and cloud secrets client-side before prompting AI. 0 bytes server egress." />
+    <meta name="twitter:image" content="https://redact-ops.vercel.app/shield.svg" />
+
+    <!-- Google Fonts Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/index-DfyKyDfe.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Schema.org SoftwareApplication Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "RedactOps",
+      "operatingSystem": "Web Browser, Chrome Extension",
+      "applicationCategory": "SecurityApplication, BusinessApplication",
+      "description": "Zero-knowledge in-browser sensitive data de-identification, tokenization, and reversible masking engine for enterprise AI prompts.",
+      "url": "https://redact-ops.vercel.app/",
+      "image": "https://redact-ops.vercel.app/shield.svg",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "100% In-Browser WebAssembly and Regex Processing",
+        "0 Bytes Server Egress Guaranteed by CSP",
+        "Reversible De-Masking Cryptographic Vault",
+        "12 Pre-Configured Compliance Detectors (HIPAA, PCI-DSS, GDPR)",
+        "Batch CSV Spreadsheet Sanitizer",
+        "Companion Chrome Extension for ChatGPT, Claude & Gemini"
+      ]
+    }
+    </script>
+
+    <!-- Schema.org Organization Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "RedactOps",
+      "url": "https://redact-ops.vercel.app/",
+      "logo": "https://redact-ops.vercel.app/shield.svg",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "thinklabs76@gmail.com",
+        "contactType": "customer service"
+      }
+    }
+    </script>
+
+    <!-- Schema.org FAQPage Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How can I make ChatGPT or Claude HIPAA compliant?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Under HIPAA Safe Harbor (45 CFR § 164.514), health data ceases to be Protected Health Information (PHI) once all 18 identifiers (names, MRNs, dates of birth, SSNs, contact numbers) are removed. RedactOps sanitizes these entities client-side in browser memory before they are submitted to an AI model, generating a cryptographic zero-knowledge compliance certificate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is zero-knowledge in-browser data redaction?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Zero-knowledge client-side redaction executes regular expression matching and tokenization strictly in your browser's local memory (RAM). The web application has no backend ingestion server and enforces connect-src 'none' in its Content Security Policy, physically preventing external data egress."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the Reversible Masking Vault work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When RedactOps tokenizes data, it generates temporary local tokens like [PERSON_1] or [EMAIL_1] and keeps an ephemeral lookup map in browser RAM. When the AI returns a summary using those tokens, pasting the response into the Rehydration Vault restores the real client identities locally in 1 millisecond."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I sanitize CSV spreadsheets in bulk?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. RedactOps includes a built-in RFC 4180 CSV engine that parses spreadsheets client-side, scrubs sensitive credit cards, SSNs, and names cell-by-cell in memory, and allows instant export of a safe CSV file ready for cloud AI analysis."
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-RyOik9co.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-CptbiT3-.css">
   </head>
   <body class="bg-slate-950 text-slate-100 antialiased selection:bg-brand-500 selection:text-white">

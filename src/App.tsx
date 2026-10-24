@@ -26,8 +26,15 @@ import {
   BookOpen
 } from 'lucide-react';
 
+const getInitialTab = (): 'studio' | 'vault' | 'csv' | 'guides' => {
+  if (typeof window !== 'undefined' && window.location.hash.startsWith('#guides')) {
+    return 'guides';
+  }
+  return 'studio';
+};
+
 export function App() {
-  const [activeTab, setActiveTab] = useState<'studio' | 'vault' | 'csv' | 'guides'>('studio');
+  const [activeTab, setActiveTab] = useState<'studio' | 'vault' | 'csv' | 'guides'>(getInitialTab);
   const [selectedPreset, setSelectedPreset] = useState<'healthcare' | 'financial' | 'legal' | 'technical' | undefined>(undefined);
   const [rules, setRules] = useState<EntityRule[]>(DEFAULT_RULES);
   const [mode, setMode] = useState<MaskingMode>('token');

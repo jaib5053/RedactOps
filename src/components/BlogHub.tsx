@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BLOG_POSTS, BlogPost } from '../data/blogPosts';
 import { BookOpen, ArrowLeft, ArrowRight, Clock, Calendar, User, Sparkles, Tag, ShieldCheck } from 'lucide-react';
 
@@ -11,6 +11,32 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onSelectPresetAndLaunch }) => 
   const [activeCategory, setActiveCategory] = useState<string>('All');
 
   const categories = ['All', 'Healthcare & HIPAA', 'Finance & PCI-DSS', 'Legal & Compliance', 'DevOps & Security'];
+
+  // Check URL hash for direct deep-linking on mount
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash.startsWith('#guides/')) {
+      const slug = hash.replace('#guides/', '');
+      const matched = BLOG_POSTS.find(p => p.slug === slug);
+      if (matched) {
+        setSelectedPost(matched);
+      }
+    }
+  }, []);
+
+  // Sync document title and meta description dynamically for SEO
+  useEffect(() => {
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (selectedPost) {
+      document.title = `${selectedPost.title} | RedactOps Guide`;
+      window.location.hash = `#guides/${selectedPost.slug}`;
+      if (metaDesc) metaDesc.setAttribute('content', selectedPost.summary);
+    } else {
+      document.title = 'AI Compliance & Privacy Guides | RedactOps';
+      window.location.hash = '#guides';
+      if (metaDesc) metaDesc.setAttribute('content', 'In-depth architectural guides for HIPAA medical notes, PCI cardholder data, attorney-client privileged depositions, and cloud infrastructure secrets.');
+    }
+  }, [selectedPost]);
 
   const filteredPosts = activeCategory === 'All'
     ? BLOG_POSTS
