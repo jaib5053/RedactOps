@@ -1,10 +1,13 @@
 # RedactOps 🛡️
 > **Zero-Knowledge In-Browser Data Anonymization & Reversible Masking for Enterprise AI**
 
+[![Live Demo](https://img.shields.io/badge/Live%20App-redact--ops.vercel.app-0ea5e9?style=for-the-badge&logo=vercel)](https://redact-ops.vercel.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Stack: Vite + React 19 + TypeScript](https://img.shields.io/badge/Stack-React%2019%20%2B%20TypeScript-sky.svg)](https://react.dev)
 [![Compliance: HIPAA & GDPR](https://img.shields.io/badge/Compliance-HIPAA%20Safe%20Harbor%20%7C%20GDPR%20Art.%2032-emerald.svg)](#compliance)
 [![Architecture: 0 Bytes Egress](https://img.shields.io/badge/Architecture-100%25%20In--Browser%20Client--Side-purple.svg)](#architecture)
+
+🌐 **Production URL:** [https://redact-ops.vercel.app/](https://redact-ops.vercel.app/)
 
 ---
 
