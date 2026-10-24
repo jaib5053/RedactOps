@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BLOG_POSTS, BlogPost } from '../data/blogPosts';
 import { BookOpen, ArrowLeft, ArrowRight, Clock, Calendar, User, Sparkles, Tag, ShieldCheck } from 'lucide-react';
+import { MarkdownRenderer } from './MarkdownRenderer';
 
 interface BlogHubProps {
   onSelectPresetAndLaunch: (presetId: 'healthcare' | 'financial' | 'legal' | 'technical') => void;
@@ -113,47 +114,9 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onSelectPresetAndLaunch }) => 
             </button>
           </div>
 
-          {/* Markdown Content Parser */}
-          <div className="prose prose-invert max-w-none text-slate-300 space-y-4 text-sm sm:text-base leading-relaxed border-t border-slate-800 pt-6">
-            {selectedPost.content.split('\n\n').map((paragraph, index) => {
-              if (paragraph.startsWith('### ')) {
-                return (
-                  <h3 key={index} className="text-lg sm:text-xl font-bold text-white pt-4 pb-1">
-                    {paragraph.replace('### ', '')}
-                  </h3>
-                );
-              }
-              if (paragraph.startsWith('#### ')) {
-                return (
-                  <h4 key={index} className="text-base sm:text-lg font-semibold text-sky-400 pt-2">
-                    {paragraph.replace('#### ', '')}
-                  </h4>
-                );
-              }
-              if (paragraph.startsWith('```')) {
-                const codeContent = paragraph.replace(/```[a-z]*\n?/g, '').replace(/```/g, '');
-                return (
-                  <pre key={index} className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs sm:text-sm font-mono text-sky-300 overflow-x-auto">
-                    {codeContent}
-                  </pre>
-                );
-              }
-              if (paragraph.startsWith('* ')) {
-                const items = paragraph.split('\n* ').map(i => i.replace(/^\* /, ''));
-                return (
-                  <ul key={index} className="list-disc list-inside space-y-1.5 text-slate-300 pl-2">
-                    {items.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                );
-              }
-              return (
-                <p key={index} className="text-slate-300 leading-relaxed">
-                  {paragraph}
-                </p>
-              );
-            })}
+          {/* Formatted Markdown Content */}
+          <div className="border-t border-slate-800 pt-6">
+            <MarkdownRenderer content={selectedPost.content} />
           </div>
 
           {/* Tags */}
