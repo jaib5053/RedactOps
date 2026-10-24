@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core SPA Routes -->
   <url>
     <loc>https://redact-ops.vercel.app/</loc>
     <lastmod>2026-10-24</lastmod>
@@ -9,9 +10,11 @@
   <url>
     <loc>https://redact-ops.vercel.app/#guides</loc>
     <lastmod>2026-10-24</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- Healthcare & HIPAA Guides -->
   <url>
     <loc>https://redact-ops.vercel.app/#guides/hipaa-chatgpt-guide</loc>
     <lastmod>2026-10-24</lastmod>
@@ -19,11 +22,75 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://redact-ops.vercel.app/#guides/hipaa-safe-harbor-vs-expert-determination</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/clinical-trials-fda-ai-anonymization</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/ehr-fhir-deidentification-pipeline</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/telehealth-ambient-scribes-privacy</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/mental-health-therapy-notes-ai</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Finance & PCI-DSS Guides -->
+  <url>
     <loc>https://redact-ops.vercel.app/#guides/finance-pci-ai-masking</loc>
     <lastmod>2026-10-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/pci-dss-v4-requirement-3-ai-compliance</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/glba-safeguards-rule-chatbots</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/anti-money-laundering-sar-ai-masking</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/algorithmic-trading-hedge-fund-alpha</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/wealth-management-tax-returns-ai</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Legal & Compliance Guides -->
   <url>
     <loc>https://redact-ops.vercel.app/#guides/legaltech-ai-confidentiality</loc>
     <lastmod>2026-10-24</lastmod>
@@ -31,7 +98,69 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://redact-ops.vercel.app/#guides/gdpr-article-17-right-to-be-forgotten-llms</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/eu-ai-act-high-risk-pii-governance</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/m-and-a-virtual-data-room-ai</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/ccpa-cpra-consumer-data-deidentification</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/whistleblower-internal-investigations-ai</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- DevOps & Security Guides -->
+  <url>
     <loc>https://redact-ops.vercel.app/#guides/devops-stop-leaking-api-keys</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/zero-trust-ai-prompting-architecture</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/soc2-type-2-ai-usage-policies</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/kubernetes-coredump-incident-triage-ai</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/penetration-testing-red-team-reports-ai</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://redact-ops.vercel.app/#guides/reverse-engineering-shadow-ai-enterprise</loc>
     <lastmod>2026-10-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
