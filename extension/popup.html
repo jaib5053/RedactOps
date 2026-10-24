@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline';">
+  <style>
+    body {
+      width: 270px;
+      margin: 0;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0b0f19;
+      color: #f1f5f9;
+      box-sizing: border-box;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .logo {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+    }
+    .title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #38bdf8;
+      letter-spacing: -0.01em;
+    }
+    .badge {
+      font-size: 10px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      padding: 2px 7px;
+      border-radius: 9999px;
+      font-family: monospace;
+      font-weight: 600;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .status {
+      font-size: 11px;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 14px 0;
+      font-size: 11px;
+      color: #cbd5e1;
+    }
+    .features li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .check {
+      color: #34d399;
+      font-weight: bold;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 9px;
+      background: #0284c7;
+      color: white;
+      text-align: center;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+    .btn:hover {
+      background: #0369a1;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="icons/icon48.png" alt="Shield" class="logo" />
+    <span class="title">RedactOps Shield</span>
+    <span class="badge">Active</span>
+  </div>
+  <p class="status">
+    Zero-knowledge protection active on ChatGPT, Claude, and Gemini textareas.
+  </p>
+  <ul class="features">
+    <li><span class="check">✓</span> 100% In-Browser In-Memory Execution</li>
+    <li><span class="check">✓</span> SSN, Credit Cards, HIPAA & Secrets</li>
+    <li><span class="check">✓</span> 0 Bytes External Network Egress</li>
+  </ul>
+  <a href="https://redactops.com" target="_blank" class="btn">
+    Launch Web Studio & Vault
+  </a>
+</body>
+</html>
