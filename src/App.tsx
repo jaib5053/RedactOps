@@ -20,7 +20,8 @@ import {
   FileSpreadsheet,
   Sliders,
   ShieldCheck,
-  Code2
+  Code2,
+  Mail
 } from 'lucide-react';
 
 export function App() {
@@ -192,7 +193,15 @@ export function App() {
             <span className="font-mono text-emerald-400">0 Bytes Egress</span>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href="mailto:thinklabs76@gmail.com"
+              className="hover:text-sky-400 text-slate-400 transition flex items-center gap-1.5"
+              title="Contact ThinkLabs Support & Licensing"
+            >
+              <Mail className="w-3.5 h-3.5 text-sky-400" />
+              <span>thinklabs76@gmail.com</span>
+            </a>
             <button
               onClick={() => setIsSecurityProofOpen(true)}
               className="hover:text-slate-300 transition"
@@ -206,13 +215,13 @@ export function App() {
               Enterprise Licensing
             </button>
             <a
-              href="https://github.com"
+              href="https://github.com/jaib5053/RedactOps"
               target="_blank"
               rel="noreferrer"
               className="hover:text-slate-300 transition flex items-center gap-1"
             >
               <Code2 className="w-3.5 h-3.5 text-sky-400" />
-              <span>Open Source Core</span>
+              <span>GitHub</span>
             </a>
           </div>
         </div>

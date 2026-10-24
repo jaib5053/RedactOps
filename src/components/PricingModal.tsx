@@ -195,6 +195,17 @@ export const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose }) =
 
         </div>
 
+        {/* Enterprise Inquiries Callout */}
+        <div className="pt-3 pb-1 border-t border-slate-800 text-center text-xs text-slate-400">
+          Need custom volume seats, PO invoicing, or a signed HIPAA Business Associate Agreement (BAA)? Contact us at{' '}
+          <a
+            href="mailto:thinklabs76@gmail.com"
+            className="text-sky-400 hover:text-sky-300 font-semibold underline underline-offset-2 transition"
+          >
+            thinklabs76@gmail.com
+          </a>
+        </div>
+
         {/* Simulated Checkout Confirmation Modal / Alert */}
         {checkoutTier && (
           <div className="mt-4 p-4 rounded-xl bg-sky-950/80 border border-sky-800 text-sky-200 text-xs flex items-center justify-between">

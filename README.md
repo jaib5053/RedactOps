@@ -90,5 +90,13 @@ The production bundle compiles to `dist/` and is 100% static, ready for instant 
 
 ---
 
+## 📬 Contact & Enterprise Support
+
+For custom enterprise licensing, signed HIPAA Business Associate Agreements (BAA), volume seats, or partnerships, reach out directly:
+
+📧 **Email:** [thinklabs76@gmail.com](mailto:thinklabs76@gmail.com)
+
+---
+
 ## 📜 License
 MIT License. Created for high-margin solo-developer execution.
