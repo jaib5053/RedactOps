@@ -26,6 +26,7 @@ interface RedactionStudioProps {
   onOpenRules: () => void;
   onMaskingComplete: (result: MaskingResult) => void;
   onSwitchToVault: () => void;
+  activePresetId?: string;
 }
 
 export const RedactionStudio: React.FC<RedactionStudioProps> = ({
@@ -34,7 +35,8 @@ export const RedactionStudio: React.FC<RedactionStudioProps> = ({
   onChangeMode,
   onOpenRules,
   onMaskingComplete,
-  onSwitchToVault
+  onSwitchToVault,
+  activePresetId
 }) => {
   const [inputText, setInputText] = useState(SAMPLE_DATASETS[0].content);
   const [result, setResult] = useState<MaskingResult | null>(null);
@@ -47,6 +49,12 @@ export const RedactionStudio: React.FC<RedactionStudioProps> = ({
   useEffect(() => {
     handleRunMasking(inputText);
   }, [mode]);
+
+  useEffect(() => {
+    if (activePresetId) {
+      handleSelectSample(activePresetId);
+    }
+  }, [activePresetId]);
 
   const handleRunMasking = async (textToProcess: string) => {
     if (!textToProcess.trim()) {

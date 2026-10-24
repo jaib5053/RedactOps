@@ -9,6 +9,7 @@ import { AuditCertificateModal } from './components/AuditCertificateModal';
 import { PricingModal } from './components/PricingModal';
 import { NetworkMonitorModal } from './components/NetworkMonitorModal';
 import { ChromeExtensionBanner } from './components/ChromeExtensionBanner';
+import { BlogHub } from './components/BlogHub';
 
 import { DEFAULT_RULES } from './engine/regexRules';
 import { EntityRule, MaskingMode, MaskingResult, AuditCertificate } from './types';
@@ -21,11 +22,13 @@ import {
   Sliders,
   ShieldCheck,
   Code2,
-  Mail
+  Mail,
+  BookOpen
 } from 'lucide-react';
 
 export function App() {
-  const [activeTab, setActiveTab] = useState<'studio' | 'vault' | 'csv'>('studio');
+  const [activeTab, setActiveTab] = useState<'studio' | 'vault' | 'csv' | 'guides'>('studio');
+  const [selectedPreset, setSelectedPreset] = useState<'healthcare' | 'financial' | 'legal' | 'technical' | undefined>(undefined);
   const [rules, setRules] = useState<EntityRule[]>(DEFAULT_RULES);
   const [mode, setMode] = useState<MaskingMode>('token');
   const [tokenMap, setTokenMap] = useState<Record<string, string>>({});
@@ -74,6 +77,7 @@ export function App() {
         onOpenAudit={() => setIsAuditModalOpen(true)}
         onOpenPricing={() => setIsPricingModalOpen(true)}
         onOpenSecurityMonitor={() => setIsSecurityProofOpen(true)}
+        onOpenGuides={() => setActiveTab('guides')}
         processedCount={totalEntitiesNeutralized}
       />
 
@@ -133,6 +137,18 @@ export function App() {
               <span>Batch CSV Cleaner</span>
             </button>
 
+            <button
+              onClick={() => setActiveTab('guides')}
+              className={`flex items-center space-x-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition ${
+                activeTab === 'guides'
+                  ? 'bg-amber-600 text-white shadow-md shadow-amber-500/20'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <BookOpen className="w-4 h-4" />
+              <span>Guides & Blog</span>
+            </button>
+
           </div>
 
           {/* Quick Trigger for Rule Configurator */}
@@ -154,6 +170,7 @@ export function App() {
             onOpenRules={() => setIsRulesModalOpen(true)}
             onMaskingComplete={handleMaskingComplete}
             onSwitchToVault={() => setActiveTab('vault')}
+            activePresetId={selectedPreset}
           />
         )}
 
@@ -175,6 +192,15 @@ export function App() {
             onUpdateStats={(bytes, count) => {
               setTotalBytesProcessed(prev => prev + bytes);
               setTotalEntitiesNeutralized(prev => prev + count);
+            }}
+          />
+        )}
+
+        {activeTab === 'guides' && (
+          <BlogHub
+            onSelectPresetAndLaunch={(presetId) => {
+              setSelectedPreset(presetId);
+              setActiveTab('studio');
             }}
           />
         )}

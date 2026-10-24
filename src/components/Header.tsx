@@ -1,10 +1,11 @@
 import React from 'react';
-import { ShieldCheck, Lock, Activity, Award, Sparkles, Terminal } from 'lucide-react';
+import { ShieldCheck, Lock, Activity, Award, Sparkles, BookOpen } from 'lucide-react';
 
 interface HeaderProps {
   onOpenAudit: () => void;
   onOpenPricing: () => void;
   onOpenSecurityMonitor: () => void;
+  onOpenGuides?: () => void;
   processedCount: number;
 }
 
@@ -12,6 +13,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenAudit,
   onOpenPricing,
   onOpenSecurityMonitor,
+  onOpenGuides,
   processedCount
 }) => {
   return (
@@ -55,6 +57,17 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Navigation & Action Buttons */}
         <div className="flex items-center space-x-2 sm:space-x-3">
+          {onOpenGuides && (
+            <button
+              onClick={onOpenGuides}
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 bg-slate-900 hover:bg-slate-800 border border-slate-800 transition"
+              title="Read AI compliance & redaction guides"
+            >
+              <BookOpen className="w-3.5 h-3.5 text-amber-400" />
+              <span className="hidden sm:inline">Guides</span>
+            </button>
+          )}
+
           <button
             onClick={onOpenSecurityMonitor}
             className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 bg-slate-900 hover:bg-slate-800 border border-slate-800 transition"
