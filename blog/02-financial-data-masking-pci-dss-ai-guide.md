@@ -1,5 +1,6 @@
 # Pasting Financial Data into Public AI: The Definitive Masking Guide
 
+**Subtitle:** Protecting cardholder data, banking coordinates, and M&A ledgers under PCI-DSS 4.0 and GLBA.  
 **Author:** ThinkLabs Financial Security Group  
 **Published:** October 2026  
 **Target Audience:** Private equity analysts, CPAs, investment bankers, FinTech engineers  
@@ -7,43 +8,46 @@
 
 ---
 
-## 1. The High Stakes of Financial Prompts
+## 1. The Corporate Exposure: When Financial Due Diligence Hits Public AI
 
-In M&A due diligence, financial modeling, and fraud analysis, analysts handle multi-thousand-row transaction ledgers, wire transfer records, and executive corporate credit card statements.
+In institutional private equity, investment banking, and corporate restructuring, deal teams handle high-sensitivity tabular exports: wire distribution memos, debt settlement account numbers, executive compensation registries, and audited transactional ledgers.
 
-Feeding this data to models like Claude 3.5 Sonnet or ChatGPT Advanced Data Analysis provides incredible speedups. However, corporate financial data is strictly regulated:
-* **PCI-DSS 4.0 Requirement 3.4:** Primary Account Numbers (PAN) must be rendered unreadable wherever processed or stored.
-* **Gramm-Leach-Bliley Act (GLBA):** Requires strict technical safeguards for consumer non-public personal financial records.
-* **Corporate M&A NDAs:** Transmitting target acquisition details (settlement bank accounts, IBANs, executive compensations) to public cloud vendors violates confidentiality agreements.
+Applying large language models to these documents unlocks extraordinary capabilities: automated variance detection, covenant breach identification, and rapid executive memo generation.
 
----
-
-## 2. Technical Vulnerability: Delimited Cards and Variable IBANs
-
-Traditional regex detectors fail on corporate financial datasets because of delimiter variations:
-* **Spaced and Hyphenated Cards:** Corporate ledgers export cards as `4532-1234-5678-9012` or `5105 1051 0510 5100`. Naive regex patterns looking for continuous 16 digits fail to detect them.
-* **Mastercard 2-Series BINs:** Modern Mastercard cards start with `2221–2720`. Older systems miss them completely.
-* **Multi-Country IBANs:** UK IBANs have 22 characters, German have 22, and French have 27. Rigid length checks truncate the remainder, leaking account identifiers.
+However, non-public financial information is governed by severe compliance regimes:
+* **PCI-DSS 4.0 (Requirement 3.4):** Mandates that Primary Account Numbers (PAN) must be rendered unreadable wherever processed, stored, or transmitted across untrusted subnets.
+* **Gramm-Leach-Bliley Act (GLBA):** Requires financial institutions to maintain administrative and technical safeguards against unauthorized disclosure of consumer records.
+* **Commercial M&A Non-Disclosure Agreements:** Transmitting target financial details, bank sort codes, or escrow coordinates across public cloud platforms constitutes a material breach of confidentiality covenants.
 
 ---
 
-## 3. How to Clean Financial Spreadsheets Client-Side
+## 2. Technical Breakdown: The Failure Modes of Legacy Regex Scrubbers
 
-[RedactOps](https://redact-ops.vercel.app/) provides two in-browser methods for financial teams:
+Most naive redaction scripts fail on production financial records because corporate financial data rarely conforms to textbook formats:
 
-### Method A: Batch CSV Sanitization (In-Memory RFC 4180 Parser)
-1. Drop a 20,000-row transaction ledger into the **Batch CSV Cleaner**.
-2. RedactOps parses columns in browser RAM without server upload.
-3. Every credit card, IBAN, bank routing number, and executive name is masked.
-4. Export the clean CSV and upload it to Claude or ChatGPT for instant statistical modeling.
-
-### Method B: Reversible Tokenization for Due Diligence Memos
-Replace real settlement accounts with `[CARD_1]`, `[IBAN_1]`, and `[PERSON_1]`. The AI drafts the acquisition brief, and you re-hydrate real values locally in the **Rehydration Vault**.
+1. **Delimited Primary Account Numbers:**
+   Corporate statements format cards as `4532-1234-5678-9012` or `5105 1051 0510 5100`. Regex engines designed only for 16 contiguous digits miss these completely, leaking cardholder data into prompt logs.
+2. **Mastercard 2-Series BIN Expansion:**
+   Modern Mastercard issuances use the 2-series Bank Identification Number range (`2221–2720`). Older financial regex suites ignore this range.
+3. **Variable-Length International Bank Account Numbers (IBAN):**
+   IBANs vary significantly by jurisdiction: British IBANs span 22 characters, German span 22, and French span 27. Rigid four-character chunk validators truncate trailing characters, exposing domestic routing identities.
 
 ---
 
-## 4. Key Takeaways
+## 3. RedactOps Architectural Solution: Dual-Engine Financial Sanitization
 
-- Never send unmasked card numbers or corporate bank routing codes to external cloud APIs.
-- Utilize zero-knowledge in-browser utilities to keep customer and company data on your local device.
-- Try the [RedactOps Financial Due Diligence Demo](https://redact-ops.vercel.app/).
+RedactOps resolves financial data sensitivity through two dedicated client-side mechanisms:
+
+### 1. In-Memory RFC 4180 Tabular Sanitization
+When analysts upload a 50,000-row transactional CSV:
+* The parser processes quoted fields, multi-line notes, and internal commas without splitting columns.
+* High-entropy patterns are evaluated in parallel inside a client-side Web Worker.
+* Output files automatically wrap modified cells in compliant quotation marks, preventing CSV injection or table misalignment.
+
+### 2. Reversible Dual-Key Token Mapping
+When drafting due diligence commentary, numbers are converted into typed tokens:
+```
+Before: "Authorize $2,450,000 wire from Barclays Account GB29 NWBK 6016 1331 9268 19"
+After:  "Authorize $2,450,000 wire from Barclays Account [IBAN_1]"
+```
+The LLM performs variance analysis on the monetary sums while the account coordinates remain completely isolated within the analyst's local device memory.

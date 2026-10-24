@@ -1,41 +1,40 @@
-# Attorney-Client Privilege in the Age of Generative AI: Practical Protection Guide
+# Attorney-Client Privilege in the Age of Generative AI
 
+**Subtitle:** Avoiding Subject-Matter Waiver Under ABA Model Rule 1.6 During AI-Assisted Litigation Review.  
 **Author:** ThinkLabs LegalTech & Compliance Group  
 **Published:** October 2026  
-**Target Audience:** Attorneys, litigation paralegals, general counsel, legaltech consultants  
+**Target Audience:** Litigation attorneys, paralegals, general counsels, legaltech consultants  
 **Live Tool:** [RedactOps Legal Deposition Cleaner](https://redact-ops.vercel.app/)
 
 ---
 
-## 1. Can You Waive Attorney-Client Privilege with an AI Prompt?
+## 1. Evidentiary Risk: The Threat of Inadvertent Privilege Waiver
 
-Under **ABA Model Rule 1.6(a)**, a lawyer shall not reveal information relating to the representation of a client without informed consent. Multiple state bar associations have cautioned attorneys that entering privileged client confidences into third-party AI models can result in a **subject-matter waiver of attorney-client privilege** in court.
+Under **American Bar Association (ABA) Model Rule 1.6(a)**, an attorney is ethically bound to maintain confidentiality regarding all aspects of client representation.
 
-If opposing counsel proves that unredacted witness testimony or settlement terms were entered into a public AI whose terms permit vendor storage or model training, your client's protected privilege could be compromised.
+State bar ethics committees across multiple jurisdictions (including California, Florida, and New York) have established that inputting unredacted client communications, witness interview summaries, or settlement negotiations into third-party AI platforms poses a severe risk: **the subject-matter waiver of attorney-client privilege**.
 
----
-
-## 2. Protected Entities in Court Transcripts
-
-A 30-page witness deposition typically contains:
-* Witness full legal names and residential addresses
-* Protected minors' identities and medical histories
-* Confidential financial transfers and bank records
-* Proprietary trade secrets, internal project names, and patent claims
+If opposing litigation counsel establishes that confidential facts or attorney work-product were transmitted to a commercial AI vendor whose service terms permit human review or model tuning, counsel can argue that confidentiality was surrendered voluntarily.
 
 ---
 
-## 3. How Modern Law Firms Maintain 100% Privilege with RedactOps
+## 2. The Nature of Protected Entities in Litigation Discovery
 
-1. **Pre-Prompt Scrubbing:** Paralegals paste deposition excerpts into RedactOps.
-2. **Contextual Name & Address Extraction:** RedactOps detects witness names preceded by legal roles (`Witness David Steinberg`, `Attorney Morrison`, `Plaintiff`) and residential street addresses.
-3. **Custom Matter Codenames:** Using the **Rule Configurator**, firms add their proprietary case project codenames (e.g. `Project Apollo`).
-4. **AI Synthesis:** Prompt Claude or ChatGPT:  
-   *"Identify all timeline contradictions in [PERSON_1]'s testimony regarding the transfer on November 12th."*
-5. **Restoration:** The resulting brief is restored in the **Rehydration Vault** with real witness names reapplied.
+A standard witness examination transcript contains dense clusters of protected data:
+* Protected witness identities and minor aliases.
+* Physical residential domiciles (`1440 Ocean Parkway, Brooklyn, NY`).
+* Financial transfer records and private settlement escrow sums.
+* Proprietary trade secrets, internal project names, and patent claims.
 
 ---
 
-## 4. Key Takeaways
-- Retain work-product privilege by ensuring zero client data ever touches external cloud inference storage unredacted.
-- Try the interactive legal deposition demo at [https://redact-ops.vercel.app/](https://redact-ops.vercel.app/).
+## 3. The RedactOps Workflow for Litigation Boutiques
+
+To maintain continuous confidentiality while benefiting from generative AI speed:
+
+1. **Local Pre-Filtering:** The paralegal pastes the deposition transcript into the RedactOps workstation.
+2. **Contextual Entity Isolation:** RedactOps extracts legal roles (`Witness`, `Attorney`, `Plaintiff`, `Defendant`), addresses, and Social Security Numbers into clean semantic tokens.
+3. **Proprietary Codename Rules:** Using the **Rule Configurator**, firms add their internal matter codenames (e.g., `Project Apollo`, `Matter Alpha`).
+4. **Safe AI Analysis:** The sanitized transcript is submitted to Claude or ChatGPT:  
+   *"Identify all chronological contradictions in [PERSON_1]'s testimony regarding the transaction on November 12th."*
+5. **Local Re-Hydration:** The resulting brief is pasted into the **Rehydration Vault**, where real witness names and addresses are restored in memory.
