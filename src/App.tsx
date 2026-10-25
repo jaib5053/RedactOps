@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { RedactionStudio } from './components/RedactionStudio';
@@ -286,6 +287,8 @@ export function App() {
         onClose={() => setIsSecurityProofOpen(false)}
         processedBytes={totalBytesProcessed}
       />
+
+      <Analytics />
 
     </div>
   );
