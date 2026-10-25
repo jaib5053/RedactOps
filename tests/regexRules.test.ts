@@ -20,7 +20,8 @@ function extractMatches(ruleId: string, text: string): string[] {
   const results: string[] = [];
   let m: RegExpExecArray | null;
   while ((m = regex.exec(text)) !== null) {
-    results.push(m[1] !== undefined ? m[1] : m[0]);
+    const captured = m.slice(1).find(g => g !== undefined);
+    results.push(captured !== undefined ? captured : m[0]);
     if (regex.lastIndex === m.index) regex.lastIndex++;
   }
   return results;

@@ -6,3 +6,4 @@ import './csvBatch.test.ts';
 import './auditCertificate.test.ts';
 import './integration.test.ts';
 import './blogPosts.test.ts';
+import './extension.test.ts';

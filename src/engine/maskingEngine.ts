@@ -58,13 +58,14 @@ export async function processMasking(
     let match: RegExpExecArray | null;
 
     while ((match = regex.exec(text)) !== null) {
-      // If rule specifies a capturing group (e.g. matching only the sensitive identifier and not the label prefix),
-      // precisely isolate the target sensitive value
+      // If rule specifies capturing groups (e.g. matching only the sensitive identifier and not the label prefix),
+      // dynamically find the active matched capturing group
       let rawText = match[0];
       let startIndex = match.index;
-      if (match[1] !== undefined) {
-        rawText = match[1];
-        const offset = match[0].indexOf(match[1]);
+      const capturedGroup = match.slice(1).find(g => g !== undefined);
+      if (capturedGroup !== undefined) {
+        rawText = capturedGroup;
+        const offset = match[0].indexOf(capturedGroup);
         if (offset !== -1) {
           startIndex = match.index + offset;
         }
@@ -81,6 +82,34 @@ export async function processMasking(
       // Avoid infinite loop on zero-width match
       if (regex.lastIndex === match.index) {
         regex.lastIndex++;
+      }
+    }
+  }
+
+  // 1b. Name propagation pass: propagate contextually identified full names across document
+  const personMatches = allMatches.filter(m => m.rule.tokenPrefix === 'PERSON' && m.rawText.includes(' '));
+  const uniqueFullNames = Array.from(new Set(personMatches.map(m => m.rawText)));
+
+  for (const fullName of uniqueFullNames) {
+    const escaped = (fullName as string).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const nameRegex = new RegExp(`\\b${escaped}\\b`, 'g');
+    let nm: RegExpExecArray | null;
+    const personRule = personMatches.find(m => m.rawText === fullName)?.rule;
+    if (personRule) {
+      while ((nm = nameRegex.exec(text)) !== null) {
+        const startIndex = nm.index;
+        const endIndex = startIndex + nm[0].length;
+        if (!allMatches.some(m => m.startIndex === startIndex && m.endIndex === endIndex)) {
+          allMatches.push({
+            rule: personRule,
+            rawText: nm[0],
+            startIndex,
+            endIndex
+          });
+        }
+        if (nameRegex.lastIndex === nm.index) {
+          nameRegex.lastIndex++;
+        }
       }
     }
   }

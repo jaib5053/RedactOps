@@ -25,11 +25,11 @@
     },
     {
       key: 'PHONE',
-      regex: /(?<!\w)(?:(?:\+?1[-. ]?)?(?:\([2-9]\d{2}\)|[2-9]\d{2})[-. ]?\d{3}[-. ]?\d{4}|\+\d{1,3}[-. ]\d{2,4}[-. ]\d{3,4}[-. ]\d{3,4})\b/g
+      regex: /(?<![\w\-])(?:(?:\+?1[-. ]?)?(?:\([2-9]\d{2}\)|[2-9]\d{2})[-. ]?\d{3}[-. ]?\d{4}|\+\d{1,3}[-. ]\d{2,4}[-. ]\d{3,4}[-. ]\d{3,4})\b/g
     },
     {
       key: 'API_KEY',
-      regex: /\b(?:(?:sk|pk)_(?:live|test)_[0-9a-zA-Z]{24,99}|sk-ant-(?:api\d{2}-)?[a-zA-Z0-9_\-]{32,128}|sk-(?:proj-)?[a-zA-Z0-9_\-]{32,128}|(?:AKIA|ASIA)[0-9A-Z]{16}|gh[pousr]_[a-zA-Z0-9]{36,255}|AIza[0-9A-Za-z_\-]{33,40})\b/g
+      regex: /\b(?:(?:sk|pk)_(?:live|test)_[0-9a-zA-Z]{24,99}|sk-ant-(?:api\d{2}-)?[a-zA-Z0-9_\-]{32,128}|sk-(?:proj-)?[a-zA-Z0-9_\-]{32,128}|(?:AKIA|ASIA)[0-9A-Z]{16}|gh[pousr]_[a-zA-Z0-9]{36,255}|AIza[0-9A-Za-z_\-]{33,40})\b|\b(?:password|passwd|pwd|passcode)(?:[\s:#=]+|(?:\s+is\s+))([^\s,;]{6,64})/gi
     },
     {
       key: 'JWT',
@@ -37,15 +37,43 @@
     },
     {
       key: 'IP_ADDR',
-      regex: /\b(?:(?:(?:25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])|(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|(?:[0-9a-fA-F]{1,4}:){1,7}:|::(?:[0-9a-fA-F]{1,4}:){0,6}[0-9a-fA-F]{1,4})\b/g
+      regex: /(?<![0-9a-zA-Z:]|(?:\d\.))(?:(?:(?:25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])|(?<!:)(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|::1|::(?:[0-9a-fA-F]{1,4}:){0,6}[0-9a-fA-F]{1,4})(?![0-9a-zA-Z:]|(?:\.\d))/g
     },
     {
       key: 'MRN',
-      regex: /\b(?:MRN|Patient ID|Chart #|MedRec)[\s:#-]+([A-Z0-9][A-Z0-9-]{4,14}[A-Z0-9])\b/gi
+      regex: /\b(?:MRN|Patient\s*(?:reference(?:\s*number)?|ID|#|number|account)|Chart\s*#|MedRec|insurance\s*(?:member\s*)?ID|member\s*ID)(?:[\s:#-]+|(?:\s+is\s+))([A-Z0-9][A-Z0-9-]{4,14}[A-Z0-9])\b/gi
+    },
+    {
+      key: 'DOB',
+      regex: /\b(?:DOB|Birthdate|Date of Birth|born)(?:[\s:#]+|(?:\s+is\s+)|(?:\s+on\s+))(\d{1,2}(?:st|nd|rd|th)?\s+(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+\d{2,4}|(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{2,4}|\d{4}[\/\-\.]\d{1,2}[\/\-\.]\d{1,2}|\d{1,2}[\/\-\.]\d{1,2}[\/\-\.]\d{2,4})\b/gi
     },
     {
       key: 'IBAN',
-      regex: /\b[A-Z]{2}[0-9]{2}(?:[ ]?[0-9A-Z]{2,4}){4,8}\b/g
+      regex: /\b[A-Z]{2}[0-9]{2}(?:[ ]?[0-9A-Z]{2,4}){4,8}\b|\b(?:bank\s*account(?:\s*number)?|routing(?:\s*number)?)(?:[\s:#]+|(?:\s+is\s+))([0-9]{8,18})\b/gi
+    },
+    {
+      key: 'ADDRESS',
+      regex: /\b\d{1,5}\s+(?:[A-Za-z0-9.-]{1,32}\s+){1,4}(?:Street|St|Avenue|Ave|Boulevard|Blvd|Road|Rd|Drive|Dr|Lane|Ln|Court|Ct|Way|Terrace|Ter|Parkway|Pkwy|Place|Pl|Circle|Cir|Highway|Hwy|Loop|Square|Sq)\b/gi
+    },
+    {
+      key: 'PERSON',
+      regex: /\b(?:(?:(?:My\s+)?(?:full\s+)?(?:legal\s+)?name\s+is)|(?:(?:usually\s+)?go\s+by)|(?:(?:My\s+)?manager\s+is)|(?:(?:emergency\s+)?contact(?:\s+is)?(?:\s+my\s+)?(?:sister|brother|spouse|husband|wife|mother|father|partner|friend)?)|(?:(?:My\s+)?(?:sister|brother|spouse|husband|wife|mother|father|partner))|(?:recipient(?:\s+name)?\s+is)|(?:physician|doctor|clinician|nurse)\s+is\s+(?:Dr\.\s+)?|Patient|Client|Attorney|Plaintiff|Defendant|Dr\.|Mr\.|Mrs\.|Ms\.|Miss|Prof\.|CEO|CFO|COO|CTO|VP|Officer|Judge)(?:[\s:#]+|(?:\s+is\s+)|(?:\s*,\s*))(?!(?:Session|Token|Secret|Payload|Config|Service|Database|Server|ID|Audit|Response|Summary|Key|Certificate|Protocol|The|A|An|This|That|These|Those)\b)([A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,3})\b|\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2})(?=,?\s+born\b)/g
+    },
+    {
+      key: 'GOV_ID',
+      regex: /\b(?:passport(?:\s*number)?|driver'?s\s*license(?:\s*number)?|DL\s*#|national\s*ID)(?:[\s:#]+|(?:\s+is\s+))([A-Z0-9][A-Z0-9-]{6,16})\b/gi
+    },
+    {
+      key: 'ACCT_ID',
+      regex: /\b(?:(?:customer\s*reference(?:\s*number)?|account\s*number|employee\s*ID|recovery\s*reference)(?:[\s:#]+|(?:\s+is\s+))([A-Z0-9][A-Z0-9-]{4,20}))\b|\b(?:CUST|ACC|EMP|REC)-[0-9A-Z]{4,14}(?:-[0-9A-Z]{4})?\b/gi
+    },
+    {
+      key: 'DEVICE',
+      regex: /\b(?:DEVICE-[A-Z0-9_-]{6,24}|fp_[a-zA-Z0-9_-]{8,32})\b|\b[-+]?(?:[1-8]?\d\.\d{3,8}|90\.0{3,8}),\s*[-+]?(?:180\.0{3,8}|(?:1[0-7]\d|\d{1,2})\.\d{3,8})\b/gi
+    },
+    {
+      key: 'USER_ID',
+      regex: /\b(?:username|user\s*id|login\s*id)(?:[\s:#]+|(?:\s+is\s+))([a-zA-Z0-9._-]{5,32})\b|\b(?:answer\s+was\s+)[“"']?([A-Za-z0-9_-]{3,32})[”"']?/gi
     }
   ];
 
@@ -63,9 +91,10 @@
       while ((match = re.exec(text)) !== null) {
         let rawText = match[0];
         let startIndex = match.index;
-        if (match[1] !== undefined) {
-          rawText = match[1];
-          const offset = match[0].indexOf(match[1]);
+        const capturedGroup = match.slice(1).find(g => g !== undefined);
+        if (capturedGroup !== undefined) {
+          rawText = capturedGroup;
+          const offset = match[0].indexOf(capturedGroup);
           if (offset !== -1) {
             startIndex = match.index + offset;
           }
@@ -82,20 +111,52 @@
       }
     }
 
-    // Sort by starting offset, longest match first for overlapping tokens
-    matches.sort((a, b) => {
-      if (a.startIndex !== b.startIndex) return a.startIndex - b.startIndex;
-      return (b.endIndex - b.startIndex) - (a.endIndex - a.startIndex);
+    // Name propagation pass: propagate contextually identified full names across document
+    const personMatches = matches.filter(m => m.key === 'PERSON' && m.rawText.includes(' '));
+    const uniqueFullNames = Array.from(new Set(personMatches.map(m => m.rawText)));
+
+    for (const fullName of uniqueFullNames) {
+      const escaped = fullName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const nameRegex = new RegExp(`\\b${escaped}\\b`, 'g');
+      let nm;
+      while ((nm = nameRegex.exec(text)) !== null) {
+        const startIndex = nm.index;
+        const endIndex = startIndex + nm[0].length;
+        if (!matches.some(m => m.startIndex === startIndex && m.endIndex === endIndex)) {
+          matches.push({
+            key: 'PERSON',
+            rawText: nm[0],
+            startIndex,
+            endIndex
+          });
+        }
+        if (nameRegex.lastIndex === nm.index) {
+          nameRegex.lastIndex++;
+        }
+      }
+    }
+
+    // Resolve overlaps with greedy longest-match priority
+    const sortedByPriority = [...matches].sort((a, b) => {
+      const lenA = a.endIndex - a.startIndex;
+      const lenB = b.endIndex - b.startIndex;
+      if (lenB !== lenA) {
+        return lenB - lenA;
+      }
+      return a.startIndex - b.startIndex;
     });
 
     const nonOverlapping = [];
-    let lastEnd = 0;
-    for (const m of matches) {
-      if (m.startIndex >= lastEnd) {
-        nonOverlapping.push(m);
-        lastEnd = m.endIndex;
+    for (const candidate of sortedByPriority) {
+      const hasOverlap = nonOverlapping.some(
+        sel => candidate.startIndex < sel.endIndex && candidate.endIndex > sel.startIndex
+      );
+      if (!hasOverlap) {
+        nonOverlapping.push(candidate);
       }
     }
+
+    nonOverlapping.sort((a, b) => a.startIndex - b.startIndex);
 
     let sanitized = '';
     let cursor = 0;
