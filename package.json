@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:extension": "rm -f public/redactops-extension.zip && (cd extension && zip -r ../public/redactops-extension.zip manifest.json content.js popup.html icons/icon16.png icons/icon48.png icons/icon128.png)",
     "preview": "vite preview",
     "test": "node --import ./node_modules/jiti/lib/jiti-register.mjs --test tests/index.test.ts",
     "test:stress": "node --import ./node_modules/jiti/lib/jiti-register.mjs --test tests/stress-1000-prompts.ts"
